@@ -1,4 +1,4 @@
-# Docker hello world comparation for TS over Bun, Java and C
+# Docker "hello world" different runtimes tests
 
 ![Images size](./.img/images.png?raw=true)
 
@@ -6,6 +6,22 @@ For test the most slim images where taken (C was built from scratch)
 
 
 ## Docker build without and with cache
+### JS: 
+```
+docker build -t node-hello-world .
+[+] Building 5.7s (7/7) FINISHED   
+docker build -t node-hello-world .
+[+] Building 0.5s (7/7) FINISHED
+```
+
+### Python: 
+```
+docker build -t python-hello-world .
+[+] Building 5.0s (7/7) FINISHED  
+docker build -t python-hello-world .
+[+] Building 0.7s (7/7) FINISHED
+```
+
 ### BUN: 
 ```
 docker build -t bun-hello-world .
@@ -31,6 +47,37 @@ docker build -t c-hello-world .
 ```
 
 ## Benchmarking
+### JS: 
+```
+$ time docker run node-hello-world
+> Hello, world!
+> docker run node-hello-world  0.00s user 0.03s system 4% cpu 0.708 total
+$ time docker run node-hello-world
+> Hello, world!
+> docker run node-hello-world  0.03s user 0.00s system 3% cpu 0.797 total
+$ time docker run node-hello-world
+> Hello, world!
+> docker run node-hello-world  0.00s user 0.03s system 4% cpu 0.702 total
+$ time docker run node-hello-world
+> Hello, world!
+> docker run node-hello-world  0.00s user 0.03s system 4% cpu 0.648 total
+```
+
+### Python
+```
+$ time docker run python-hello-world
+> Hello, world!
+> docker run python-hello-world  0.00s user 0.03s system 4% cpu 0.677 total
+$ time docker run python-hello-world
+> Hello, world!
+> docker run python-hello-world  0.02s user 0.01s system 4% cpu 0.692 total
+$ time docker run python-hello-world
+> Hello, world!
+> docker run python-hello-world  0.00s user 0.03s system 5% cpu 0.624 total
+$ time docker run python-hello-world
+> Hello, world!
+> docker run python-hello-world  0.01s user 0.01s system 4% cpu 0.694 total
+```
 ### BUN: 
 ```
 $ time docker run bun-hello-world
